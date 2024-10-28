@@ -61,19 +61,14 @@ void drawBoard(int rowOffset, int colOffset, int appleX, int appleY, Snake *snak
                         isBodyPart = 1;
                         break;
                     }
-
                 }
-                if (!isBodyPart) {
-                    printf("#");
-                }
+                if (!isBodyPart) printf("#");
             }
         }
         printf("\n");
     }
 
-    for(int i = 0; i < rowOffset; i++) {
-        printf("\n");
-    }
+    for(int i = 0; i < rowOffset; i++) printf("\n");
 }
 
 struct winsize getTermSize() {
@@ -84,7 +79,6 @@ struct winsize getTermSize() {
     } else {
         perror("Unable to get terminal size");
         exit(EXIT_FAILURE);
-       
     }
 }
 
@@ -142,9 +136,7 @@ int moveSnake(Snake *snake, int *appleX, int *appleY) {
     }
 
     for (int i = 1; i < snake->length; i++) {
-        if (snake->headX == snake->body[i][0] && snake->headY == snake->body[i][1])  {
-            return 1;
-        }
+        if (snake->headX == snake->body[i][0] && snake->headY == snake->body[i][1])  return 1;
     }
     
     return 0;
@@ -177,9 +169,7 @@ void drawGameOver(int rowOffset, int colOffset) {
         printf("\n");
     }
 
-    for(int i = 0; i < rowOffset; i++) {
-        printf("\n");
-    }
+    for(int i = 0; i < rowOffset; i++) printf("\n");
 }
 
 
@@ -220,12 +210,9 @@ int main(void) {
                 startInput = 1;
                 updateDirection(&snake, input);
             }
-
         }
 
-        if (startInput) {
-            gameOver = moveSnake(&snake, &appleX, &appleY);
-        }
+        if (startInput) gameOver = moveSnake(&snake, &appleX, &appleY);
 
         if (gameOver) { drawGameOver(rowOffset, colOffset); break; }
 
