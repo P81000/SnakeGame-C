@@ -196,6 +196,8 @@ int main(void) {
     int rowOffset = (ws.ws_row - HEIGHT) / 2;
     int colOffset = (ws.ws_col - WIDTH) / 2;
 
+    printf("\033[32m");
+
     struct termios origTermios;
     tcgetattr(STDOUT_FILENO, &origTermios);
     enableRawMode(&origTermios);
@@ -229,6 +231,8 @@ int main(void) {
 
         usleep(200000);
     }
+
+    printf("\033[0m");
 
     fcntl(STDIN_FILENO, F_SETFL, origFlags);
     disableRawMode(&origTermios);
